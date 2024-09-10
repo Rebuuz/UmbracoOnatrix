@@ -1,0 +1,29 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using contentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    var buttonLinkText = Model?.Content.Value<string>("buttonLinkText");
+    var buttonLinkUrl = Model?.Content.Value<string>("buttonLinkUrl");
+    var buttonLinkColor = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("buttonColor")?.Label.ToLower() ?? null;
+
+    var buttonAlignment = Model?.Content?.Value<string>("buttonAlignment") ?? "";
+
+    var alignmentClass = buttonAlignment switch 
+    {
+        "Start" => "align-self-start",
+        "Center" => "align-self-center",
+        "End" => "align-self-end",
+        _ => "align-self-start"
+    };    
+}
+
+@if (!string.IsNullOrEmpty(buttonLinkColor))
+{
+    <a href="@buttonLinkUrl" title="@buttonLinkText" class="btn-@buttonLinkColor @alignmentClass">@buttonLinkText</a>
+}
+else
+{
+    <a href="@buttonLinkUrl" title="@buttonLinkText" class="btn @alignmentClass">@buttonLinkText</a>
+}

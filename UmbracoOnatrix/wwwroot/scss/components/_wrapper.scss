@@ -1,0 +1,8 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    @include desktop {
+        grid-template-columns: auto auto 1fr auto;
+    }
+}
