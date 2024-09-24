@@ -1,0 +1,28 @@
+#success-story {
+    
+    position: relative;
+    height: 80vh;
+    margin-bottom: 18rem;
+
+    .background-image {
+        width: 70%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 4rem;
+    }
+
+    .container {
+        img {
+            padding-top: 2rem;
+            margin: 0 auto;
+            position: relative;
+
+            // @include tablet {
+            //     margin: auto;
+            // }
+        }
+    }
+
+    
+}

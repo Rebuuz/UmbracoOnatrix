@@ -3,15 +3,9 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-    var richTextContent = Model?.Content.Value<string>("richTextContent") ?? null;
+    var richTextContent = Model?.Content.Value("richTextContent") ?? null;
 }
 
-@* @if (!string.IsNullOrEmpty(richTextContent)) 
-{
-    <div class="content">
-        @richTextContent
-    </div>
-} *@
 
 @if (richTextContent != null)
 {

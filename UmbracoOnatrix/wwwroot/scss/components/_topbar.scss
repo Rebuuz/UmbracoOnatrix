@@ -1,0 +1,29 @@
+#topbar {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 13px;
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+        .socialmedia {
+            display: flex;
+            // gap: 1rem;
+            
+            .socialmedia-item {
+                border-left: 1px solid rgb(116, 114, 114);
+                border-right: 1px solid rgb(116, 114, 114);
+                padding-left: 1rem;
+                padding-right: 1rem;
+                color: #ffffff;
+
+                &:hover {
+                    color: var(--color-accent);
+                }
+            }
+            
+            
+        }
+    }
+}

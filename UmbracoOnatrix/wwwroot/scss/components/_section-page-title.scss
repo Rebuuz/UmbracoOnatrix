@@ -1,0 +1,30 @@
+.page-title {
+    background-color: var(--color-gray);
+    background-image: url(../../media/background-image-page-title.svg);
+    height: 245px;
+    
+    .container {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        padding-top: 4rem;
+
+        ul {
+            
+            li {
+                gap: 2rem;
+                color: var(--color-secondary);
+
+                a {
+                    color: var(--color-default);
+                }
+                
+                .divider {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    color: var(--color-default);
+                }
+            }
+        }
+    }
+}

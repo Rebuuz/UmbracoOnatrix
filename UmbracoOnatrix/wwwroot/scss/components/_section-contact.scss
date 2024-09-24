@@ -1,0 +1,45 @@
+#contact-section {
+    .container {
+        gap: 10rem;
+        margin-top: 5rem;
+        display: flex;
+        background-image: url("../../images/section-contact-bg-image.svg");
+        background-repeat: no-repeat;
+
+        .contact {
+
+            .heading {
+                padding-right: 15rem;
+                padding-bottom: 2rem;
+            }
+
+            .contact-information {
+                display: grid;
+                grid-template-columns: 1fr 20fr;
+
+                .icon {
+                    color: var(--color-secondary);
+                    font-size: 18px;
+                }
+
+                .info {
+                    padding-bottom: 1rem;
+
+                    .p-bold {
+                        font-weight: 600;
+                        font-size: 14px;
+                    }
+
+                    .p-normal {
+                        font-size: 14px;
+                    }
+
+                    .p-italic {
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,53 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@{    
+    var headline = Model?.Content.Value("headline") ?? null;
+
+    var colorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("backgroundColor")?.Label.ToLower() ?? null;
+    var backgroundColorClass = !string.IsNullOrEmpty(colorLabel) ? $"bg-{colorLabel}" : "";
+
+	var selection = Umbraco.Content(Guid.Parse("ff96772a-43b8-4bf0-abf3-492d2fee1bb8"))
+    .ChildrenOfType("serviceItemTemplate")
+    .Where(x => x.IsVisible())
+    .Take(6);
+
+}
+
+<section id="our-services" class="spacing-top spacing-bottom @backgroundColorClass">
+    @if(!string.IsNullOrEmpty(backgroundColorClass))
+    {
+        <div class="background @backgroundColorClass"></div>
+    }
+    <div class="container">
+        <div class="headline">
+            @headline
+        </div>
+        <div class="services">
+            @if (selection != null)
+            {
+                @foreach(var item in selection) 
+                {
+                    var image = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                    var preamble = item?.Value<string>("preamble") ?? "";
+
+                        <a href="@item.Url()">
+                            <div class="card">
+                                <div class="header">
+                                    <h5>@item.Name</h5>
+                                </div>
+                                <div class="body">
+                                    <img src="@image" alt="@item.Name"/>
+                                </div>
+                                <div class="footer">
+                                    <p class="p-regular">@preamble</p>
+                                </div>
+                            </div>
+                        </a>
+                }
+            }
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,46 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceItemTemplate>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model.Value("pageTitle") ?? null;
+
+    var floatLeft = (Model!.Value<bool>("floatLeft")) ? "float-left" : "";
+    var floatRight = (Model.Value<bool>("floatRight")) ? "float-right" : "";
+
+    var contentFloatLeft = (Model!.Value<bool>("contentFloatLeft")) ? "float-left" : "";
+    var contentFloatRight = (Model.Value<bool>("contentFloatRight")) ? "float-right" : "";
+
+    var formBackgroundColorLabel = Model?.Value<ColorPickerValueConverter.PickedColor>("asideFormBackgroundColor")?.Label.ToLower() ?? null;
+    var formBackgroundColorClass = (!string.IsNullOrEmpty(formBackgroundColorLabel) && formBackgroundColorLabel != "none") ? $"bg-{formBackgroundColorLabel}" : "";
+
+    var asideTopInformation = Model?.Value("asideTopInformation") ?? null;
+    var asideFormInformation = Model?.Value("asideFormInformation") ?? null;
+
+}
+
+<section id="service-details" class="spacing-top spacing-bottom">
+    <div class="container">
+        <div class="border-left @contentFloatLeft @contentFloatRight">
+            @Model.Value("pageContent")
+        </div>
+
+        <aside id="service-item-aside" class="@floatLeft @floatRight">
+            <div class="aside-top-info">
+                @asideTopInformation
+            </div>
+            <div class="aside-form-info @formBackgroundColorClass">
+                @if(!string.IsNullOrEmpty(formBackgroundColorClass))
+                {
+                    <div class="background @formBackgroundColorClass"></div>
+                }
+                @asideFormInformation
+            </div>
+        </aside>
+
+    </div>
+</section>
+
+@await Html.GetBlockGridHtmlAsync(Model)

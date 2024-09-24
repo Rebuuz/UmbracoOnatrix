@@ -1,0 +1,93 @@
+.image-slider {
+
+    .slides {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .slide-item {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        width: 100%; 
+        height: 100%; 
+        text-decoration: none; 
+
+        &:hover {
+            
+            .image-overlay {
+                background-color: var(--color-primary);
+                padding-top: 2rem;
+
+                h6 {
+                    color: var(--color-secondary);
+                }
+
+                .overlay-arrow {
+                    opacity: 1;
+                }
+            }
+
+            
+        }
+
+        .slide-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(79, 89, 85, 0.5); 
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+
+            h6 {
+                color: #ffffff;
+            }
+
+            .p-regular {
+                color: #ffffff;
+            }
+
+            .image-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0;
+                
+            }
+
+            .image-information {
+                font-size: 14px;
+                margin: 5px 0 0;
+            }
+
+            .overlay-arrow {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 22px;
+                display: flex;
+                align-items: center;
+                transform: translateX(-10px);
+                transition: all 0.3s ease; 
+                opacity: 0; 
+
+                i {
+                    margin-left: 5px;
+                }
+            }
+
+        }
+    }
+}

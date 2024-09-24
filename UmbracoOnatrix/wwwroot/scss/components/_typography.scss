@@ -11,6 +11,7 @@ h1 {
     font-size: 70px;
 }
 
+
 h2 {
     font-size: 40px;
 }
@@ -32,9 +33,27 @@ h6 {
 }
 
 p {
-    font-size: 1em;
+    font-size: 16px;
     margin-top: 0rem;
     margin-bottom: 0.5rem;
-    // border: solid red 1px;
+    color: var(--color-default);
 }
 
+.p-regular{
+    @include text;
+    font-size: 14px;
+    color: var(--color-default);
+}
+
+.h1-big {
+    font-weight: 600;
+    font-family: $font-poppins;
+    font-size: 100px;
+    
+}
+
+.h5-semibold {
+    font-weight: 600;
+    font-family: $font-poppins;
+    font-size: 18px;
+}

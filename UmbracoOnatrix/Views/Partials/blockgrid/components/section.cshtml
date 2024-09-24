@@ -7,8 +7,8 @@
     var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
     var sectionId = sectionTitle?.ToString().ToLower().Trim().Replace(" ", "-");
 
-    var spacingTopClass = (Model!.Content.Value<bool>("addSpacingToTop")) ? "spacing-top" : "";
-    var spacingBottomClass = (Model.Content.Value<bool>("addSpacingToBottom")) ? "spacing-bottom" : "";
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "spacing-top" : "";
+    var spacingBottomClass = (Model.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
     var centerContentClass = (Model.Content.Value<bool>("centerContentPage")) ? "center" : "";
 
     var sectionBackgroundColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
@@ -17,7 +17,7 @@
     var sectionBackgroundImage = Model?.Content.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
 }
 
-<section id="@sectionId" class="@spacingTopClass spacingBottomClass backgroundColorClass"> 
+<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @backgroundColorClass"> 
 
     @if(!string.IsNullOrEmpty(backgroundColorClass))
     {

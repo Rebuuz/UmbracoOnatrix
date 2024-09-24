@@ -1,0 +1,45 @@
+header {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        #navbar {
+            
+            .nav-menu {
+                display: flex;
+                gap: 2rem;
+                
+                .nav-link {
+                    font-weight: 700;
+                    font-size: 16px;
+                    font-family: $font-poppins;
+
+                    &:hover {
+                        color: var(--color-secondary);
+                        text-decoration: none;
+                    }
+                }
+
+                .active {
+                    color: var(--color-secondary);
+                    text-decoration: none;
+                }
+      
+                }
+            }
+        }
+
+        .btn-menu {
+            display: block;
+
+            @include tablet {
+                display: none;
+            }
+        }
+}
+
+
