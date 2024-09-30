@@ -1,0 +1,113 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectsListPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model.Value("pageTitle") ?? null;
+
+    var selection = Umbraco.Content(Guid.Parse("30336ea3-de6b-421a-a00f-733f9ab5c75d"))
+    .ChildrenOfType("projectsItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var itemsPerPage = 4;
+
+    if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
+        currentPage = 1;
+
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+
+    
+    var contentLeft = (Model!.Value<bool>("contentLeft")) ? "content-projects-left" : "";
+    var contentRight = (Model.Value<bool>("contentRight")) ? "content-projects-right" : "";
+    
+    var keywords = Model.Value<IEnumerable<string>>("tags");
+}
+
+<section id="our-projects">
+    <div class="container spacing-top spacing-bottom @contentLeft @contentRight">
+        <div class="projects border-right">
+            @if (pagedItems != null)
+            {
+                @foreach(var item in pagedItems) 
+                {
+                    var projectDate = item?.Value<string>("projectDate") ?? "";
+                    var image = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                    var preamble = item?.Value<string>("preamble") ?? "";
+
+                        <a href="@item.Url()">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="@image" alt="@item.Name"/>
+                                </div>
+                                <div class="card-information">
+                                    <div class="header">
+                                        <h5>@item.Name</h5>
+                                    </div>
+                                    <div class="date-information">
+                                        <i class="fa-regular fa-calendar-days"></i><span class="date">@projectDate</span>
+                                    </div>
+                                    <div class="footer">
+                                        <p class="p-regular">@preamble</p>
+                                    </div>
+                                    <div class="link">
+                                        <a class="read-more" href="@item.Url()">Read More <i class="fa-regular fa-arrow-right-long"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                }
+            }
+
+            <section class="pagination">
+            <div class="container">
+                @if(currentPage > 1)
+                {
+                    <a href="?page=@(currentPage - 1)" class="change">PREV</a>
+                }
+                else 
+                {
+                    <span class="change inactive">PREV</span>
+                }
+                <ul class="pages">
+                    @for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++)
+                    {
+                        <li class="@((i == currentPage) ? "number active" : "number")">
+                            <a href="?page=@i">@i</a>
+                        </li>
+                    }
+                </ul>
+
+                @if(currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage))
+                {
+                    <a class="change" href="?page=@(currentPage + 1)">NEXT</a>
+                }
+                else 
+                {
+                    <span class="change inactive">NEXT</span>
+                }
+            </div>
+        </section>
+
+        </div>
+
+        <aside id="projects-list-aside">
+            <div class="aside-top-info">
+                <h4 class="heading">Tags</h4>
+                <div class="tag-content">
+                    @if(keywords!.Any()) 
+                    {
+                        <ul class="tags-list">
+                            @foreach(var tag in keywords!) {
+                                <li class="tag-item">@tag</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </aside>
+
+    </div>
+</section>
+
+@await Html.GetBlockGridHtmlAsync(Model.Layout)

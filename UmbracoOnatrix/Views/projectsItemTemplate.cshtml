@@ -1,0 +1,23 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model.Value("pageTitle") ?? null;
+
+    var contentLeft = (Model!.Value<bool>("contentLeft")) ? "content-left" : "";
+    var contentRight = (Model.Value<bool>("contentRight")) ? "content-right" : "";
+    
+    var projectDate = (Model.Value<string>("projectDate")) ?? null;
+
+
+}
+
+<section id="projects-details" class="spacing-top spacing-bottom">
+    <div class="container @contentLeft @contentRight">
+        <div class="border-right">
+            <i class="fa-regular fa-calendar-days"></i>@projectDate
+            @Model.Value("pageContent")
+        </div>
+
+    </div>
+</section>

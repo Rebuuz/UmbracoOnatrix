@@ -1,0 +1,126 @@
+#our-projects {
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2rem;
+            
+            .card {
+                display: flex;
+                flex-direction: row;
+                border-bottom: 1px solid #ECECEC;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+
+
+                &:last-of-type{
+                    border:none;
+                }
+
+                .card-information {
+                    padding-left: 2rem;
+
+                    .date-information {
+                        color: #9C9EA6;
+                        align-items: center;
+                        padding-bottom: .5rem;
+
+                        i {
+                            padding-right: .5rem;
+                        }
+
+                        .date {
+                            color: #9C9EA6;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .link {
+                        padding-top: 2rem;
+
+                        .read-more {
+                            color: var(--color-default);
+                            font-size: 14px;
+                            font-weight: 600;
+
+                            i {
+                                padding-left: .5rem;
+                                color: var(--color-secondary);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .pagination {
+            margin-top: 4rem;
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin-bottom: 2rem;
+                gap: 1rem;
+
+                .pages {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    list-style-type: none;  
+                    margin: 0;
+                    padding: 0;
+                    gap: 2rem;
+
+                    li {
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 54px;
+                        width: 54px;
+                        border-radius: 50%; 
+                        border: 1px solid transparent; 
+                        transition: all 0.3s ease;
+
+                        a {
+                             display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+                            height: 100%;
+                            text-decoration: none;
+                            color: var(--color-default);
+                        }
+
+                        &.active {
+                            border-color: #ECECEC; 
+                        }
+                    
+                    }
+                }
+                .change {
+                    color: var(--color-default);
+                    font-weight: 600;
+                }
+
+                .inactive {
+                    color: #EAEAEA;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        #projects-list-aside {
+            padding-left: 2rem;
+        }
+    }
+}

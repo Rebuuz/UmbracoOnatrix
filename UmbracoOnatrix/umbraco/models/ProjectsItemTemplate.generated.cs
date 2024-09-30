@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Service Item Template</summary>
-	[PublishedModel("serviceItemTemplate")]
-	public partial class ServiceItemTemplate : PublishedContentModel
+	/// <summary>Projects Item Template</summary>
+	[PublishedModel("projectsItemTemplate")]
+	public partial class ProjectsItemTemplate : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		public new const string ModelTypeAlias = "serviceItemTemplate";
+		public new const string ModelTypeAlias = "projectsItemTemplate";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ServiceItemTemplate, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ProjectsItemTemplate, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public ServiceItemTemplate(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public ProjectsItemTemplate(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,42 +50,26 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Aside Form Background Color
+		/// Aside Tags
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("asideFormBackgroundColor")]
-		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor AsideFormBackgroundColor => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "asideFormBackgroundColor");
+		[ImplementPropertyType("asideTags")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> AsideTags => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "asideTags");
 
 		///<summary>
-		/// Aside Form Information
+		/// Content Left
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("asideFormInformation")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString AsideFormInformation => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "asideFormInformation");
+		[ImplementPropertyType("contentLeft")]
+		public virtual bool ContentLeft => this.Value<bool>(_publishedValueFallback, "contentLeft");
 
 		///<summary>
-		/// Aside Top Information
+		/// Content Right
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("asideTopInformation")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString AsideTopInformation => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "asideTopInformation");
-
-		///<summary>
-		/// Content Float Left
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[ImplementPropertyType("contentFloatLeft")]
-		public virtual bool ContentFloatLeft => this.Value<bool>(_publishedValueFallback, "contentFloatLeft");
-
-		///<summary>
-		/// Content Float Right
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[ImplementPropertyType("contentFloatRight")]
-		public virtual bool ContentFloatRight => this.Value<bool>(_publishedValueFallback, "contentFloatRight");
+		[ImplementPropertyType("contentRight")]
+		public virtual bool ContentRight => this.Value<bool>(_publishedValueFallback, "contentRight");
 
 		///<summary>
 		/// Layout
@@ -112,7 +96,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string PageTitle => this.Value<string>(_publishedValueFallback, "pageTitle");
 
 		///<summary>
-		/// preamble
+		/// Preamble
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -120,7 +104,47 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Preamble => this.Value<string>(_publishedValueFallback, "preamble");
 
 		///<summary>
-		/// ThumbnailImage
+		/// Project Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("projectDate")]
+		public virtual string ProjectDate => this.Value<string>(_publishedValueFallback, "projectDate");
+
+		///<summary>
+		/// Recent Projects Headline
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("recentProjectsHeadline")]
+		public virtual string RecentProjectsHeadline => this.Value<string>(_publishedValueFallback, "recentProjectsHeadline");
+
+		///<summary>
+		/// Tags
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tags")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Tags => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "tags");
+
+		///<summary>
+		/// Tags Headline
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tagsHeadline")]
+		public virtual string TagsHeadline => this.Value<string>(_publishedValueFallback, "tagsHeadline");
+
+		///<summary>
+		/// Tags Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tagsTitle")]
+		public virtual string TagsTitle => this.Value<string>(_publishedValueFallback, "tagsTitle");
+
+		///<summary>
+		/// Thumbnail Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]

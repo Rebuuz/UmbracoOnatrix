@@ -1,0 +1,24 @@
+.tag-content {
+
+    .tags-list {
+        list-style-type: none;
+        padding: 0 0 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        
+        .tag-item {
+            border: 1px solid #ECECEC;
+            border-radius: 20px;
+            font-size: 13px;
+            text-align: center;
+            padding: 8px;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+
+            &:hover {
+                background-color: var(--color-secondary);
+            }
+        }
+    }
+}

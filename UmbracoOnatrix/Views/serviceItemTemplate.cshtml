@@ -10,8 +10,8 @@
     var floatLeft = (Model!.Value<bool>("floatLeft")) ? "float-left" : "";
     var floatRight = (Model.Value<bool>("floatRight")) ? "float-right" : "";
 
-    var contentFloatLeft = (Model!.Value<bool>("contentFloatLeft")) ? "float-left" : "";
-    var contentFloatRight = (Model.Value<bool>("contentFloatRight")) ? "float-right" : "";
+    var contentLeft = (Model!.Value<bool>("contentFloatLeft")) ? "content-left" : "";
+    var contentRight = (Model.Value<bool>("contentFloatRight")) ? "content-right" : "";
 
     var formBackgroundColorLabel = Model?.Value<ColorPickerValueConverter.PickedColor>("asideFormBackgroundColor")?.Label.ToLower() ?? null;
     var formBackgroundColorClass = (!string.IsNullOrEmpty(formBackgroundColorLabel) && formBackgroundColorLabel != "none") ? $"bg-{formBackgroundColorLabel}" : "";
@@ -22,12 +22,12 @@
 }
 
 <section id="service-details" class="spacing-top spacing-bottom">
-    <div class="container">
-        <div class="border-left @contentFloatLeft @contentFloatRight">
+    <div class="container @contentLeft @contentRight">
+        <div class="border-left">
             @Model.Value("pageContent")
         </div>
 
-        <aside id="service-item-aside" class="@floatLeft @floatRight">
+        <aside id="service-item-aside">
             <div class="aside-top-info">
                 @asideTopInformation
             </div>
