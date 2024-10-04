@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContactPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model.Value("pageTitle") ?? null;
+    var contactFormText = Model.Value("contactFormText") ?? null;
+
+}
+
+@await Html.GetBlockGridHtmlAsync(Model.Layout)
+
+<section id="contact-us-form" class="spacing-bottom">
+    <div class="container">
+        @contactFormText
+        <form class="contact-form">
+            @Html.GetBlockListHtml(Model.ContactForm)
+        </form>
+    </div>
+</section>
+
+@await Html.PartialAsync("partials/static/partnerlist.cshtml");

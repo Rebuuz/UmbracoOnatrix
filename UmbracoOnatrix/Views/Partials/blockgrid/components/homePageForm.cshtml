@@ -1,0 +1,43 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var form = Model.Content.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("homeForm");
+    var headingText = Model.Content.Value<string>("headingTitle") ?? "";
+    var formInformationText = Model.Content.Value<string>("formInformationText") ?? "";
+}
+
+<div class="form-container">
+    <div class="heading">
+        <h2 class="heading-text">@headingText</h2>
+    </div>
+    <div class="form-information">
+        <p class="p-regular">@formInformationText</p>
+    </div>
+    <form class="home-form">
+         @foreach(var item in form)
+         {
+            var uniqueName = item.Content.Value<string>("uniqueName");
+            var placeholderText = item.Content.Value<string>("placeholderText");
+            var inputType = item.Content.Value<IEnumerable<string>>("inputType");
+            var hideLabel = item.Content.Value<bool>("hideLabel"); 
+            var dropdownSelection = item.Content.Value<IEnumerable<string>>("dropdownSelection");
+
+            
+
+            @if(dropdownSelection.Any()) 
+            {
+                <select>
+                    @foreach(var option in dropdownSelection)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+            }
+            else 
+            {
+                <input type="@inputType" class="form-input" id="@uniqueName" placeholder="@placeholderText"/>
+            }
+         }
+    </form>
+</div>

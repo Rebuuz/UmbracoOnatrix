@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var uniqueName = Model.Content.Value<string>("uniqueName") ?? "";
+    var placeholderText = Model.Content.Value<string>("placeholderText") ?? "";
+    var labelText = Model.Content.Value<string>("labelText") ?? "";
+    var inputType = Model.Content.Value<IEnumerable<string>>("inputType");
+    var hideLabel = Model.Content.Value<bool>("hideLabel");
+}
+
+<div class="form-area" id="_@uniqueName">
+    @if(!hideLabel)
+    {
+        <label for="@uniqueName" class="@labelText">@labelText</label>
+    }
+    <input type="@inputType" class="form-input" id="@uniqueName" placeholder="@placeholderText"/>
+</div>

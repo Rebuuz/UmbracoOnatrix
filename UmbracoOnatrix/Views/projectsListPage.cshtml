@@ -1,6 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectsListPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @{
 	Layout = "mainLayout.cshtml";
     ViewBag.Title = Model.Value("pageTitle") ?? null;
@@ -22,6 +23,11 @@
     var contentRight = (Model.Value<bool>("contentRight")) ? "content-projects-right" : "";
     
     var keywords = Model.Value<IEnumerable<string>>("tags");
+    
+    var formBackgroundColorLabel = Model?.Value<ColorPickerValueConverter.PickedColor>("asideFormBackgroundColor")?.Label.ToLower() ?? null;
+    var formBackgroundColorClass = (!string.IsNullOrEmpty(formBackgroundColorLabel) && formBackgroundColorLabel != "none") ? $"bg-{formBackgroundColorLabel}" : "";
+
+    var asideFormInformation = Model?.Value("asideFormInformation") ?? null;
 }
 
 <section id="our-projects">
@@ -103,6 +109,14 @@
                             }
                         </ul>
                     }
+                </div>
+                <div class="aside-form-info @formBackgroundColorClass">
+                    @if(!string.IsNullOrEmpty(formBackgroundColorClass))
+                    {
+                        <div class="background @formBackgroundColorClass"></div>
+                    }
+                    @asideFormInformation
+                    <input class="form-input" placeholder="Email Address"/>
                 </div>
             </div>
         </aside>

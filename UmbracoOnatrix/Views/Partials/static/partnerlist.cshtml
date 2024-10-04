@@ -1,0 +1,29 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var slides = settings?.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("partnerSlides") ?? null;
+}
+
+<section id="partner-list" class="spacing-bottom">
+    <div class="container">
+        @foreach (var item in slides) 
+        {
+            var selectedImage = item?.Content.Value<IPublishedContent>("selectedImage")?.Url();
+            var imageDescription = item?.Content.Value<string>("imageDescription") ?? "image slide item";
+            var imageLinkUrl = item?.Content.Value<string>("imageLinkUrl") ?? string.Empty;
+            var linkIsExternal = item?.Content.Value<bool>("isExternal") ?? false;
+            var imageTitle = item?.Content.Value<string>("imageTitle") ?? null;
+            var imageInformation = item.Content.Value<string>("imageInformation") ?? null;
+
+            if (!string.IsNullOrEmpty(selectedImage))
+            {
+                <div class="slide-item">
+                    <img src="@selectedImage" alt="@imageDescription" class="slide-image" />
+                </div>
+            }
+        }
+    </div>
+</section>

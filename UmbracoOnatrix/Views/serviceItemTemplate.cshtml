@@ -37,9 +37,19 @@
                     <div class="background @formBackgroundColorClass"></div>
                 }
                 @asideFormInformation
+                <input class="form-input" placeholder="Email Address"/>
             </div>
         </aside>
 
+    </div>
+</section>
+
+<section id="service-form" class="spacing-top spacing-bottom">
+    <div class="container">
+        <h4 class="heading">Have a question?</h4>
+        <form class="form-service">
+            @Html.GetBlockListHtml(Model?.ServiceForm)
+        </form>
     </div>
 </section>
 

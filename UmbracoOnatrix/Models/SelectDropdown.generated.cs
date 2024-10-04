@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Settings Page</summary>
-	[PublishedModel("settingsPage")]
-	public partial class SettingsPage : PublishedContentModel
+	/// <summary>SelectDropdown</summary>
+	[PublishedModel("selectDropdown")]
+	public partial class SelectDropdown : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		public new const string ModelTypeAlias = "settingsPage";
+		public new const string ModelTypeAlias = "selectDropdown";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<SettingsPage, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<SelectDropdown, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public SettingsPage(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public SelectDropdown(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,67 +50,50 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Office Email Address
+		/// Dropdown Selection
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("officeEmailAddress")]
-		public virtual string OfficeEmailAddress => this.Value<string>(_publishedValueFallback, "officeEmailAddress");
+		[ImplementPropertyType("dropdownSelection")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> DropdownSelection => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "dropdownSelection");
 
 		///<summary>
-		/// Office Location
+		/// Error Message
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("officeLocation")]
-		public virtual string OfficeLocation => this.Value<string>(_publishedValueFallback, "officeLocation");
+		[ImplementPropertyType("errorMessage")]
+		public virtual string ErrorMessage => this.Value<string>(_publishedValueFallback, "errorMessage");
 
 		///<summary>
-		/// Office Phone Number
+		/// Is Required
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("officePhoneNumber")]
-		public virtual string OfficePhoneNumber => this.Value<string>(_publishedValueFallback, "officePhoneNumber");
+		[ImplementPropertyType("isRequired")]
+		public virtual bool IsRequired => this.Value<bool>(_publishedValueFallback, "isRequired");
 
 		///<summary>
-		/// Site Favicon
+		/// Label Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("siteFavicon")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SiteFavicon => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "siteFavicon");
+		[ImplementPropertyType("labelText")]
+		public virtual string LabelText => this.Value<string>(_publishedValueFallback, "labelText");
 
 		///<summary>
-		/// Site Logotype
+		/// Placeholder Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("siteLogotype")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SiteLogotype => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "siteLogotype");
+		[ImplementPropertyType("placeholderText")]
+		public virtual string PlaceholderText => this.Value<string>(_publishedValueFallback, "placeholderText");
 
 		///<summary>
-		/// Site Name
+		/// Unique Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("siteName")]
-		public virtual string SiteName => this.Value<string>(_publishedValueFallback, "siteName");
-
-		///<summary>
-		/// Site Tagline
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("siteTagline")]
-		public virtual string SiteTagline => this.Value<string>(_publishedValueFallback, "siteTagline");
-
-		///<summary>
-		/// Social Media Platforms
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("socialMediaPlatforms")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SocialMediaPlatforms => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "socialMediaPlatforms");
+		[ImplementPropertyType("uniqueName")]
+		public virtual string UniqueName => this.Value<string>(_publishedValueFallback, "uniqueName");
 	}
 }

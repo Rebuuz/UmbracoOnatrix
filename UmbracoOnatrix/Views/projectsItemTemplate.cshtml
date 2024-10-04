@@ -1,23 +1,111 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectsItemTemplate>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 @{
 	Layout = "mainLayout.cshtml";
     ViewBag.Title = Model.Value("pageTitle") ?? null;
 
+    var selection = Umbraco.Content(Guid.Parse("30336ea3-de6b-421a-a00f-733f9ab5c75d"))
+    .ChildrenOfType("projectsItemTemplate")
+    .Where(x => x.IsVisible())
+    .Take(4);
+
     var contentLeft = (Model!.Value<bool>("contentLeft")) ? "content-left" : "";
     var contentRight = (Model.Value<bool>("contentRight")) ? "content-right" : "";
+
+    var keywords = Model.Value<IEnumerable<string>>("tags");
+
+    var date = Model.Value<string>("projectDate") ?? "";
     
-    var projectDate = (Model.Value<string>("projectDate")) ?? null;
+    var formBackgroundColorLabel = Model?.Value<ColorPickerValueConverter.PickedColor>("asideFormBackgroundColor")?.Label.ToLower() ?? null;
+    var formBackgroundColorClass = (!string.IsNullOrEmpty(formBackgroundColorLabel) && formBackgroundColorLabel != "none") ? $"bg-{formBackgroundColorLabel}" : "";
 
+    var asideFormInformation = Model?.Value("asideFormInformation") ?? null;
 
+    var tagsHeadline = Model.Value<string>("tagsHeadline") ?? "";
+    var recentProjectsHeadline = Model.Value<string>("recentProjectsHeadline") ?? "";
 }
 
 <section id="projects-details" class="spacing-top spacing-bottom">
     <div class="container @contentLeft @contentRight">
         <div class="border-right">
-            <i class="fa-regular fa-calendar-days"></i>@projectDate
+            <i class="fa-regular fa-calendar-days"></i>@date
             @Model.Value("pageContent")
+
+            <section class="bottom-tags">
+            <div class="tag-list">
+                <div class="tag-heading">
+                    <p class="tag-heading">Tags:</p>
+                </div>
+                <div class="tags">
+                    @if(keywords!.Any()) 
+                        {
+                            <ul class="tags-list">
+                                @foreach(var tag in keywords!) {
+                                    <li class="tag-item">@tag</li>
+                                }
+                            </ul>
+                        }
+                </div>
+            </div>
+        </section>
         </div>
+
+
+        <aside id="projects-item-aside">
+            <div class="aside-top-info">
+                <h4 class="projects-heading">@recentProjectsHeadline</h4>
+                <div class="projects-list">
+                    @if (selection != null)
+                    {
+                        @foreach(var item in selection) 
+                        {
+                            var projectDate = item?.Value<string>("projectDate") ?? "";
+                            var image = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                            var preamble = item?.Value<string>("preamble") ?? "";
+
+                                <a href="@item.Url()">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img src="@image" alt="@item.Name"/>
+                                        </div>
+                                        <div class="card-information">
+                                            <div class="header">
+                                                <h5>@item.Name</h5>
+                                            </div>
+                                            <div class="date-information">
+                                                <i class="fa-regular fa-calendar-days"></i><span class="date">@projectDate</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                        }
+                    }
+                </div>
+            </div>
+            <h4 class="tags-heading">@tagsHeadline</h4>
+                <div class="tag-content">
+                    @if(keywords!.Any()) 
+                    {
+                        <ul class="tags-list">
+                            @foreach(var tag in keywords!) {
+                                <li class="tag-item">@tag</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            <div class="aside-form-info @formBackgroundColorClass">
+                @if(!string.IsNullOrEmpty(formBackgroundColorClass))
+                {
+                    <div class="background @formBackgroundColorClass"></div>
+                }
+                @asideFormInformation
+                <input class="form-input" placeholder="Email Address"/>
+            </div>
+        </aside>
 
     </div>
 </section>
+
+@await Html.GetBlockGridHtmlAsync(Model.Layout)

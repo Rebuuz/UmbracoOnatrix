@@ -1,0 +1,36 @@
+#service-form {
+    .container {
+        
+        .form-service {
+            
+
+            .umb-block-list {
+                display: grid;
+                justify-content: center;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 2rem;
+
+                .form-area:nth-child(1),
+                .form-area:nth-child(2) {
+                    grid-column: auto; 
+                }
+
+                .form-area:nth-child(3) {
+                    grid-column: span 2; 
+                }
+                
+                .form-area {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                button {
+                    grid-column: span 2;
+                    justify-self: start;
+                    width: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+#contact-us-form {
+    background-image: url(./../../media/map-image-contact.svg);
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+
+    .container {
+        padding: 6rem;
+        background-color: white;
+        position: absolute;
+        top: 20%;
+        left: 15%;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+
+        .contact-form {
+            margin-top: 2rem;
+            
+            .umb-block-list {
+                display: grid;
+                justify-content: center;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 2rem;
+
+                .form-area {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+            }
+
+            button {
+                grid-column: 1 / span 2;
+                justify-self: center;
+                padding-inline: 2.5rem;
+                color: var(--color-accent);
+                border: none;
+            }
+        }
+    }
+}

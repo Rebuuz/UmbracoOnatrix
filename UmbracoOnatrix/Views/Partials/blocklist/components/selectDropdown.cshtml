@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var uniqueName = Model.Content.Value<string>("uniqueName") ?? "";
+    var placeholderText = Model.Content.Value<string>("placeholderText") ?? "";
+    var labelText = Model.Content.Value<string>("labelText") ?? "";
+    var inputType = Model.Content.Value<IEnumerable<string>>("inputType");
+    var dropdownSelection = Model.Content.Value<IEnumerable<string>>("dropdownSelection");
+}
+
+<div class="form-area" id="_@uniqueName">
+    @if(dropdownSelection.Any()) 
+    {
+        <select>
+            @foreach(var option in dropdownSelection)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+    }
+</div>
